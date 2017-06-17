@@ -1,0 +1,2 @@
+(defun get-basic-resultset (data &key headers)
+  (cons headers (mapcar #'values-of data)))
