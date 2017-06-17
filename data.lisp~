@@ -24,10 +24,16 @@
   (setf *orders* (cons (make-order name amount) *orders*)))
 
 (defmethod values-of ((obj order))
-  (list (name-of obj) (amount-of obj) (format-date (timestamp-of obj))))
+  (list (name-of obj) (write-string (amount-of obj)) (format-date (timestamp-of obj))))
 
 (defun format-date (timestamp)
   (multiple-value-bind
       (second minute hour day month year) 
       (decode-universal-time timestamp)
     (format nil "~a.~a.~a" day month year)))
+
+(defun generate-orders (amount)
+  (let* ((names '("Николай" "Дарья" "Евгений" "Матвей" "Анастасия" "Дмитрий" "Миша"))
+        (names-length (length names)))
+    (dotimes (i amount)
+      (add-order (elt names (random names-length)) (random 1000)))))

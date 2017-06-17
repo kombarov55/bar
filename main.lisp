@@ -18,7 +18,8 @@
   (format t "Запись добавлена.~%"))
 
 (defmethod proceed ((command (eql :display)))
-  (let ((result-set (rs-extracter:get-basic-resultset 
+  (let ((from (console:ask-date))
+        (result-set (rs-extracter:get-basic-resultset 
                     *orders* :headers '("#" "Имя" "Сумма" "Дата"))))
     (print:print-rs result-set)))
 
