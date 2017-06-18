@@ -14,13 +14,12 @@
   (format t "До встречи!"))
 
 (defmethod proceed ((command (eql :add)))
-  (data:add-order (console:prompt "Имя") (console:prompt "Сумма"))
+  (data:add-order (console:prompt "Имя") (parse-integer (console:prompt "Сумма")))
   (format t "Запись добавлена.~%"))
 
-(defmethod proceed ((command (eql :display)))
-  (let ((from (console:ask-date))
-        (result-set (rs-extracter:get-basic-resultset 
-                    *orders* :headers '("#" "Имя" "Сумма" "Дата"))))
+(defmethod proceed ((command (eql :display))) ; сделать такой же пункт меню, как и в главном: спрашивать имя, дату
+  (let* ((from (console:ask-date))
+        (result-set (rs-extracter:get-resultset '("#" "Имя" "Сумма" "Дата") (after from))))
     (print:print-rs result-set)))
 
 (defun main-loop ()

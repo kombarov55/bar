@@ -1,6 +1,7 @@
 (defpackage :utils
   (:use :cl)
   (:export :>>
+           :>>>
            :minus-time
            :time-of
            :format-date
@@ -12,4 +13,7 @@
   (loop for fun in functions do
     (setf arg (funcall (eval fun) arg)))
   arg)
+
+(defun >>> (arg functions) 
+  (>> arg functions))
 

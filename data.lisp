@@ -1,9 +1,11 @@
 (defpackage :data
-  (:use :cl :time)
+  (:use :cl :utils)
   (:export :*orders*
            :order
            :add-order
-           :values-of))
+           :values-of
+           :order->list
+           :calculate-sum))
 
 (in-package :data)
 
@@ -27,6 +29,11 @@
 (defmethod values-of ((obj order))
   (list (name-of obj) (int->str (amount-of obj)) (time:format-date (timestamp-of obj))))
 
+(defun order->list (order)
+  (list (name-of order) 
+        (int->str (amount-of order))
+        (>> order #'timestamp-of #'time:format-date)))
+
 (defun generate-orders (amount)
   (let* ((names '("Николай" "Дарья" "Евгений" "Матвей" "Анастасия" "Дмитрий" "Миша"))
         (names-length (length names)))
@@ -42,3 +49,6 @@
 
 (defun int->str (val)
   (if (stringp val) val (write-to-string val)))
+
+(defun calculate-sum (order-list)
+  (reduce #'+ order-list :key #'amount-of))
