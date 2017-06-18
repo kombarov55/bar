@@ -3,8 +3,11 @@
 (defpackage :console)
 (defpackage :print)
 (defpackage :rs-extracter)
+(defpackage :utils)
+(defpackage :time)
 
-
+(load "/Users/nikolaykombarov/Desktop/lisp/bar/utils.lisp")
+(load "/Users/nikolaykombarov/Desktop/lisp/bar/time.lisp")
 (load "/Users/nikolaykombarov/Desktop/lisp/bar/data.lisp")
 (load "/Users/nikolaykombarov/Desktop/lisp/bar/console.lisp")
 (load "/Users/nikolaykombarov/Desktop/lisp/bar/print.lisp")

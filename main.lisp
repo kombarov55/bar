@@ -28,5 +28,3 @@
     (proceed command)
     (unless (console:exit-command? command)
       (main-loop))))
-
-;(main-loop)

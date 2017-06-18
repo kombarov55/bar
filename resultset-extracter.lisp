@@ -1,5 +1,5 @@
 (defpackage :rs-extracter
-  (:use :cl :data)
+  (:use :cl :data :utils)
   (:export :get-basic-resultset))
 
 (in-package :rs-extracter)
@@ -16,8 +16,3 @@
             (cons  (write-to-string (incf index)) (data:values-of order))) 
           order-list)))
 
-
-(defun >> (arg &rest functions)
-  (loop for fun in functions do
-    (setf arg (funcall (eval fun) arg)))
-  arg)
